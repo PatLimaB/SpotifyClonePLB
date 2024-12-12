@@ -108,32 +108,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
         songs.forEach((song, index) => {
             const isFavorite = favoriteSongs.includes(song.id.toString());
-
             const songElement = document.createElement("li");
             songElement.classList.add("song");
             songElement.dataset.id = song.id;
-            songElement.innerHTML = `
-                <button class="song-play-button">
-                    <img src="./src/imgs/green-play-button.png" alt="Play">
-                </button>
-                <span class="song-title">${song.title}</span>
-                <span class="song-artist">${song.artist}</span>
-                <span class="song-duration">${song.duration}</span>
-                <button class="favorite-button">
-                    <img src="src/imgs/${isFavorite ? "fav.png" : "not-fav.png"}" alt="Favorite">
-                </button>
-            `;
 
-            //Add event listener to play song on click
-            songElement.addEventListener("click", (e) => {
-                if (!e.target.classList.contains("favorite-button")) {
-                    playSong(index);
-                }
+            const audio = new Audio(song.filepath);  //New audio object to get the song duration
+            audio.addEventListener('loadedmetadata', () => {
+                song.duration = audio.duration;
+
+                //And now we can render the song
+                songElement.innerHTML = `
+                    <button class="song-play-button">
+                        <img src="./src/imgs/green-play-button.png" alt="Play">
+                    </button>
+                    <span class="song-title">${song.title}</span>
+                    <span class="song-artist">${song.artist}</span>
+                    <span class="song-duration">${formatTime(song.duration)}</span>
+                    <button class="favorite-button">
+                        <img src="src/imgs/${isFavorite ? "fav.png" : "not-fav.png"}" alt="Favorite">
+                    </button>
+                `;
+
+                //Add event listener to play song on click
+                songElement.addEventListener("click", (e) => {
+                    if (!e.target.classList.contains("favorite-button")) {
+                        playSong(index);
+                    }
+                });
+
+                songsList.appendChild(songElement);
             });
-
-            songsList.appendChild(songElement);
         });
-
         //Initialize events for favorite buttons
         initializeFavoriteButtons();
     }
