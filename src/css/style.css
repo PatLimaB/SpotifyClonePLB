@@ -1,0 +1,507 @@
+:root {
+    --primary-color: #f2f3f2;
+    --secondary-color: #a9a7a8;
+    --accent-color: #2cca44;
+    --red-color: #fb6159;
+    --orange-color: #ffb643;
+    --black-color: #111111;
+    --white-color: #fefefe;
+    --dark-grey: #171717;
+    --medium-grey: #262626;
+    --light-grey: #3c3c3c;
+    --lightest-grey: #d3d3d3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--dark-grey);
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 6px 6px 0 6px;
+    position: fixed;
+    height: 80%;
+}
+
+#upper-sidebar {
+    background-color: var(--dark-grey);
+    height: 60%;
+}
+
+#lower-sidebar {
+    background-color: var(--medium-grey);
+    height: 40%;
+}
+
+#lower-sidebar img {
+    height: auto;
+    width: 100%;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.window-buttons span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: var(--red-color);
+}
+
+.orange {
+    background-color: var(--orange-color);
+}
+
+.green {
+    background-color: var(--accent-color);
+}
+
+.filter button {
+    background: var(--light-grey);
+    color: var(--lightest-grey);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--medium-grey);
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    height: 15%;
+}
+
+#upper-header,
+#lower-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#upper-header span,
+#lower-header div {
+    display: flex;
+    align-items: center;
+    width: 10%;
+    justify-content: space-around;
+    font-weight: bold;
+    gap: 5px;
+}
+
+#play-button-header,
+#submitSong {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#play-button-header:hover,
+footer.player button:hover,
+.add-button:hover,
+.song-play-button:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.search-bar {
+    width: 200px;
+    padding: 5px 10px 5px 35px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--medium-grey);
+    outline: none;
+    font-size: 14px;
+    background-image: url("../imgs/search.png");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+#image-user {
+    width: 30px;
+}
+
+.add-button {
+    background: none;
+    border: none;
+    width: 20px;
+    cursor: pointer;
+}
+
+.add-button img {
+    width: 20px;
+}
+
+.song-list {
+    height: 65%;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: var(--medium-grey);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    color: var(--secondary-color);
+}
+
+.song-title-header,
+.song-artist-header,
+.song-time-header {
+    flex: 1;
+    text-align: left;
+}
+
+.song-time-header img {
+    width: 20px;
+    height: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--medium-grey);
+    border-top: 1px solid var(--light-grey);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.song:hover {
+    background-color: var(--light-grey);
+}
+
+.song-play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.song:hover .song-play-button {
+    opacity: 1;
+}
+
+.song-play-button img {
+    width: 25px;
+    height: 25px;
+}
+
+.song-title,
+.song-artist,
+.song-duration {
+    flex: 1;
+    text-align: left;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.song-title {
+    flex: 1;
+}
+
+.song-artist {
+    flex: 1;
+}
+
+.song-duration {
+    flex: 0.2;
+    text-align: right;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex: 1;
+}
+
+.favorite-button img {
+    width: 20px;
+    height: 20px;
+}
+
+footer.player {
+    background-color: var(--medium-grey);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 3%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 19%;
+}
+
+.current-song-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-controls,
+.progress-bar {
+    flex: 1;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+
+.player-controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.volume-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-info,
+.volume-bar {
+    width: 25%;
+    margin: 0 20px;
+}
+
+#volume-icon {
+    height: 15px;
+}
+
+.player-controls-progress {
+    width: 72%;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-slider,
+.volume-slider {
+    width: 100%;
+}
+
+.player-buttons-imgs {
+    width: 27px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--medium-grey);
+    border: 1px solid var(--light-grey);
+    border-radius: 5px;
+    padding: 5px 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.dropdown button {
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    color: var(--primary-color);
+    cursor: pointer;
+    width: 100%;
+}
+
+.dropdown button:hover {
+    background-color: var(--light-grey);
+}
+
+.filter {
+    position: relative;
+}
+
+.filter-button span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+}
+
+.filter-button span img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+input[type="range"] {
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, #3c3c3c 0%, #3c3c3c 50%, var(--secondary-color) 50%, var(--secondary-color) 100%);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: var(--secondary-color);
+    height: 6px;
+    border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 8px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #171717;
+    cursor: pointer;
+    transform: translateY(-1px);
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 8px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #171717;
+    cursor: pointer;
+    transform: translateY(-1px);
+}
+
+.hidden {
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--primary-color);
+    color: var(--light-grey);
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#uploadForm input {
+    width: 80%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
